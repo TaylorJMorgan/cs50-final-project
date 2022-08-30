@@ -1,1 +1,1 @@
-web: waitress-serve --listen=*:5000 app:app
+web: waitress-serve --listen=*:$PORT app:app
