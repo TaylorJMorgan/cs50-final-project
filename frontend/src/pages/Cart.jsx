@@ -58,7 +58,7 @@ function Cart() {
                         {cart.map(product => {
                             return (
                                 <CartItem
-                                    key={product.id}
+                                    key={Math.random()}
                                     id={product.id}
                                     name={product.name}
                                     price={product.price}

@@ -12,6 +12,7 @@ function Navigation(props) {
     const location = useLocation();
 
     useEffect(() => {
+
         async function getData(url = '/get-email') {
             const response = await fetch(url);
             return response.text();
@@ -41,18 +42,18 @@ function Navigation(props) {
                 <Navbar.Toggle aria-controls='sitter-navbar' />
                 <Navbar.Collapse id='sitter-navbar'>
                     <Nav className='ms-auto fs-5'>
-                        <Nav.Link eventKey='1' as={Link} to='/'>Home</Nav.Link>
-                        <Nav.Link eventKey='2' as={Link} to='products'>Products</Nav.Link>
+                        <Nav.Link className='ms-3' eventKey='1' as={Link} to='/'>Home</Nav.Link>
+                        <Nav.Link className='ms-3' eventKey='2' as={Link} to='products'>Products</Nav.Link>
 
                         {isLoggedIn === false &&
-                            <Nav.Link eventKey='3' as={Link} to='login'>Login</Nav.Link>
+                            <Nav.Link className='ms-3' eventKey='3' as={Link} to='login'>Login</Nav.Link>
                         }
 
                         {isLoggedIn === true &&
-                            <Nav.Link eventKey='4' as={Link} to='logout'>{user + ' (Sign out)'}</Nav.Link>
+                            <Nav.Link className='ms-3' eventKey='4' as={Link} to='logout'>{user + ' (Sign out)'}</Nav.Link>
                         }
 
-                        <Nav.Link eventKey='5' as={Link} to='cart'><ShoppingCartIcon /></Nav.Link>
+                        <Nav.Link className='ms-3' eventKey='5' as={Link} to='cart'><ShoppingCartIcon /></Nav.Link>
                     </Nav>
                 </Navbar.Collapse>
             </Container>
