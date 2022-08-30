@@ -10,7 +10,7 @@ from helpers import login_required, apology
 from flask_json import FlaskJSON, JsonError, json_response, as_json
 
 # Basic app config
-app = Flask(__name__)
+app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
 json = FlaskJSON(app)
 
 # SQLAlchemy config
@@ -52,7 +52,13 @@ class Product(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
+@app.route('/', defaults={'path': ''})
+def serve(path):
+    return send_from_directory(app.static_folder, 'index.html')
+
 # Route to login existing user
+
+
 @app.route('/login', methods=['POST'])
 def login():
     ''' Login existing user '''
