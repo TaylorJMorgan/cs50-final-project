@@ -9,7 +9,7 @@
 /coverage
 
 # production
-/build
+# /build
 
 # misc
 .DS_Store
@@ -36,7 +36,7 @@ venv/
 .venv/
 env*
 dist/
-build/
+# build/
 *.egg
 *.egg-info/
 .tox/

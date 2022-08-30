@@ -1,17 +1,16 @@
-import os
 import re
-from unicodedata import name
 
-from flask import Flask, request, session
+from flask import Flask, request, session, send_from_directory
+from flask_cors import CORS, cross_origin
 from flask_session import Session
 from werkzeug.security import check_password_hash, generate_password_hash
 from flask_sqlalchemy import SQLAlchemy
-from helpers import login_required, apology
-from flask_json import FlaskJSON, JsonError, json_response, as_json
+from flask_json import FlaskJSON
 
 # Basic app config
-app = Flask(__name__, static_folder='../frontend/build', static_url_path='/')
+app = Flask(__name__, static_folder='frontend/build', static_url_path='/')
 json = FlaskJSON(app)
+CORS(app)
 
 # SQLAlchemy config
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database/database.db'
@@ -52,7 +51,8 @@ class Product(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
-@app.route('/', defaults={'path': ''})
+@app.route('/')
+@cross_origin()
 def serve(path):
     return send_from_directory(app.static_folder, 'index.html')
 
