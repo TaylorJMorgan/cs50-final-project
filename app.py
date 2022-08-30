@@ -53,7 +53,7 @@ class Product(db.Model):
 
 @app.route('/')
 # @cross_origin()
-def serve(path):
+def serve():
     return send_from_directory(app.static_folder, 'index.html')
 
 # Route to login existing user
