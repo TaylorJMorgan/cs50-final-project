@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # SITTR
 ## Video Demo: [Here](https://youtu.be/L8nH3I7WuDc)
 ## URL: [sittr.shop](http://www.sittr.shop)
@@ -52,3 +53,6 @@ React Router is a library that allows React to handle all of the site routing. I
 ## Images
 
 All of Sittr's images are generated with DALL-E 2, a machine learning AI image generater developed by OpenAI. None of these images are real - they were created by entering prompts into DALL-E 2. The user who generates these images has full commercial rights to them. This was an interesting and economical solution over purchasing stock images.
+=======
+# TaylorJMorgan
+cf2b2c727903324ac6f1a561a098bc15f09c9fac
