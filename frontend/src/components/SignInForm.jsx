@@ -20,7 +20,7 @@ function SignInForm(props) {
             as='main'
             className='m-auto bg-light py-3 rounded'>
             <Form
-                className='text-center form-signin mx-auto' novalidate>
+                className='text-center form-signin mx-auto' noValidate>
                 <h1 className='mb-3'>{props.title}</h1>
 
                 <p className='text-danger'>{error}</p>

@@ -4,13 +4,24 @@ import { useState } from 'react';
 import Modal from 'react-bootstrap/Modal';
 import Button from 'react-bootstrap/Button';
 import Image from 'react-bootstrap/Image';
+import Popover from 'react-bootstrap/Popover';
+import OverlayTrigger from 'react-bootstrap/OverlayTrigger';
 
 function ProductCard(props) {
 
     const [show, setShow] = useState(false);
+    const [error, setError] = useState();
+    const [popoverText, setPopoverText] = useState('');
 
     const handleClose = () => setShow(false);
     const handleShow = () => setShow(true);
+
+    const popover = (
+        <Popover id='popover'>
+            <Popover.Header as='h3'>Add to cart</Popover.Header>
+            <Popover.Body>{popoverText}</Popover.Body>
+        </Popover>
+    )
 
     // Currency formatting regex from Stack Overflow https://stackoverflow.com/questions/55556221/how-do-you-format-a-number-to-currency-when-using-react-native-expo
     function currencyFormat(num) {
@@ -36,7 +47,40 @@ function ProductCard(props) {
                 </Modal.Body>
                 <Modal.Footer>
                     <p className='me-auto fs-5'>{currencyFormat(props.price)} CAD</p>
-                    <Button className='fs-5' variant='secondary' onClick={handleClose}>Add to cart</Button>
+
+                    <OverlayTrigger trigger='click' placement='right' overlay={popover}>
+                        <Button className='fs-5' variant='secondary'
+                            onClick={async () => {
+                                const id = props.id;
+                                const name = props.name;
+                                const price = props.price;
+                                const image = props.image;
+
+                                const product = { id, name, price, image };
+                                const response = await fetch('/set-product', {
+                                    method: 'POST',
+                                    headers: {
+                                        'Content-Type': 'application/json'
+                                    },
+                                    body: JSON.stringify(product)
+                                });
+
+                                if (response.ok) {
+                                    setPopoverText('Item added to cart');
+                                    return 'TODO: when product is successfully added';
+                                }
+
+                                if (response.status === 400) {
+                                    const errorText = async () => {
+                                        const result = await response.text();
+                                        setError(result);
+                                    }
+                                    errorText();
+                                    setPopoverText('Something went wrong: ' + error);
+                                }
+                            }}>Add to cart</Button>
+                    </OverlayTrigger>
+
                 </Modal.Footer>
             </Modal>
 

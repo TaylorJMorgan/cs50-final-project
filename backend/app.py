@@ -25,11 +25,10 @@ app.config['SESSION_COOKIE_SAMESITE'] = 'None'
 app.config['SESSION_COOKIE_SECURE'] = True
 Session(app)
 
+
 # Database models
 
 # User model
-
-
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     email = db.Column(db.String(120), unique=True, nullable=False)
@@ -39,9 +38,8 @@ class User(db.Model):
     def as_dict(self):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
+
 # Product model
-
-
 class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(120), unique=True, nullable=False)
@@ -54,6 +52,7 @@ class Product(db.Model):
         return {c.name: getattr(self, c.name) for c in self.__table__.columns}
 
 
+# Route to login existing user
 @app.route('/login', methods=['POST'])
 def login():
     ''' Login existing user '''
@@ -90,21 +89,56 @@ def login():
     return 'Success', 200
 
 
-# Route to get info from session
-@app.route('/get')
-def get():
+# Route to get email from session
+@app.route('/get-email')
+def get_email():
     if session.get('user_email'):
         return session.get('user_email')
     else:
         return 'Not signed in', 200
 
 
+# Route to add item to cart
+@app.route('/set-product', methods=['POST'])
+def set():
+    # Create cart as empty array if it doesn't already exist
+    if 'cart' not in session:
+        session['cart'] = []
+    product = request.get_json()
+    session['cart'].append(product)
+    return 'Added to cart', 200
+
+
+# Route to retrieve items from cart
+@app.route('/get-products')
+def get_products():
+    if 'cart' in session:
+        if session['cart']:
+            return session['cart']
+        return {'status': 'cart empty'}, 200
+    else:
+        return {'status': 'cart empty'}, 200
+
+
+# Route to remove items from cart
+@app.route('/remove-product', methods=['POST'])
+def remove_products():
+    removed_item = request.get_json()
+    for product in session['cart']:
+        if product['id'] == removed_item['id']:
+            session['cart'].remove(product)
+            return 'Item removed from cart', 200
+        return 'Item does not exist in cart', 400
+
+
+# Route to logout user
 @app.route('/logout', methods=['POST'])
 def logout():
     session.clear()
     return 'Success', 200
 
 
+# Route for showing product information
 @app.route('/products')
 def products():
     ''' Display products to user '''
@@ -118,6 +152,7 @@ def products():
     return productList
 
 
+# Route to register new user
 @app.route('/register', methods=['POST'])
 def register():
     ''' Register new user '''
