@@ -1,0 +1,22 @@
+{
+  "files": {
+    "main.css": "/static/css/main.19f204e6.css",
+    "main.js": "/static/js/main.a5a3dd48.js",
+    "static/js/787.cda612ba.chunk.js": "/static/js/787.cda612ba.chunk.js",
+    "static/media/opulent-chair.png": "/static/media/opulent-chair.4d3c0bfae71ec36d99ca.png",
+    "static/media/minimal-chair.png": "/static/media/minimal-chair.c803ab62a155e7946961.png",
+    "static/media/black-leather-chair.png": "/static/media/black-leather-chair.4b5b95916c7b4d701919.png",
+    "static/media/banner-img-2.png": "/static/media/banner-img-2.ae9db90ff1df7bd03aab.png",
+    "static/media/simple-wood-chair.png": "/static/media/simple-wood-chair.d621825a4812a7c7cb76.png",
+    "static/media/banner-img-1.png": "/static/media/banner-img-1.1e76242e4e690fd0d91d.png",
+    "static/media/desk-chair.png": "/static/media/desk-chair.36799402a1ee97e088be.png",
+    "index.html": "/index.html",
+    "main.19f204e6.css.map": "/static/css/main.19f204e6.css.map",
+    "main.a5a3dd48.js.map": "/static/js/main.a5a3dd48.js.map",
+    "787.cda612ba.chunk.js.map": "/static/js/787.cda612ba.chunk.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.19f204e6.css",
+    "static/js/main.a5a3dd48.js"
+  ]
+}

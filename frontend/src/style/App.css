@@ -1,0 +1,68 @@
+/* Font imports */
+
+@import url('https://fonts.googleapis.com/css2?family=Lobster');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat');
+
+body {
+  font-family: 'Montserrat' !important;
+  color: #434343 !important;
+}
+
+html body {
+  height: 100vh;
+}
+
+.brand-name {
+  font-family: 'Lobster';
+}
+
+/* Footer specific */
+
+footer a {
+  text-decoration: none !important;
+  color: #434343;
+}
+
+footer p {
+  margin-bottom: 0 !important;
+}
+
+/* Form specific */
+
+.form-signin {
+  width: 100%;
+  max-width: 330px;
+  padding: 15px;
+}
+
+/* Transform banner image on large screens */
+
+@media only screen and (min-width: 992px) {
+  .banner-img-container {
+    perspective: 600px;
+  }
+}
+
+/* For right banner */
+@media only screen and (min-width: 992px) {
+  .banner-img-right {
+    transform: rotateY(-10deg);
+    scale: 90%;
+  }
+}
+
+/* For left banner */
+@media only screen and (min-width: 992px) {
+  .banner-img-left {
+    transform: rotateY(10deg);
+    scale: 90%;
+  }
+}
+
+.product-thumbnail {
+  width: 300px;
+}
+
+.cart-img {
+  width: 100px;
+}
